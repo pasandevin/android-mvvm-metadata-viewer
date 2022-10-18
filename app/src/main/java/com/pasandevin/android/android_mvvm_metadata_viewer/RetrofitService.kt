@@ -1,6 +1,6 @@
 package com.pasandevin.android.android_mvvm_metadata_viewer
 
-import com.pasandevin.android.android_mvvm_metadata_viewer.ui.main.Models.NetworkVideoContainer
+import com.pasandevin.android.android_mvvm_metadata_viewer.Models.NetworkVideoContainer
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET

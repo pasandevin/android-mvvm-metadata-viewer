@@ -3,7 +3,7 @@ package com.pasandevin.android.android_mvvm_metadata_viewer
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.pasandevin.android.android_mvvm_metadata_viewer.ui.main.Models.DatabaseVideo
+import com.pasandevin.android.android_mvvm_metadata_viewer.Models.DatabaseVideo
 
 @Dao
 interface VideoDao {

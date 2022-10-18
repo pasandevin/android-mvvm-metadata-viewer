@@ -1,13 +1,13 @@
 package com.pasandevin.android.android_mvvm_metadata_viewer.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.pasandevin.android.android_mvvm_metadata_viewer.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.pasandevin.android.android_mvvm_metadata_viewer.Adapter.VideoAdapter
 import com.pasandevin.android.android_mvvm_metadata_viewer.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -22,21 +22,25 @@ class MainFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainBinding.inflate(inflater,container,false)
+        binding = FragmentMainBinding.inflate(inflater, container, false)
 
         binding.vm = viewModel
 
         viewModel.playlist.observe(viewLifecycleOwner) {
-            Log.d("MainFragment", it[0].title)
+            binding.recyclerview.layoutManager = LinearLayoutManager(view?.context)
+            //attach adapter and view data
+            binding.recyclerview.adapter = VideoAdapter(it)
 
         }
+
+
+
 
         return binding.root
     }

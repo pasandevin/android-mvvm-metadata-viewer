@@ -1,4 +1,4 @@
-package com.pasandevin.android.android_mvvm_metadata_viewer.ui.main.Models
+package com.pasandevin.android.android_mvvm_metadata_viewer.Models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

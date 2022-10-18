@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pasandevin.android.android_mvvm_metadata_viewer.DevByteNetwork
-import com.pasandevin.android.android_mvvm_metadata_viewer.ui.main.Models.DevByteVideo
-import com.pasandevin.android.android_mvvm_metadata_viewer.ui.main.Models.asDomainModel
+import com.pasandevin.android.android_mvvm_metadata_viewer.Models.DevByteVideo
+import com.pasandevin.android.android_mvvm_metadata_viewer.Models.asDomainModel
 import kotlinx.coroutines.launch
 import java.io.IOException
 

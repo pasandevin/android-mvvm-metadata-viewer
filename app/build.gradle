@@ -8,6 +8,10 @@ android {
     namespace 'com.pasandevin.android.android_mvvm_metadata_viewer'
     compileSdk 32
 
+    dataBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "com.pasandevin.android.android_mvvm_metadata_viewer"
         minSdk 23

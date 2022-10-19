@@ -20,7 +20,7 @@ fun NetworkVideoContainer.asDomainModel(): List<DevByteVideo> {
 }
 
 //function to map List<DevByteVideo> to List<DatabaseVideo>
-fun List<DevByteVideo>.asDatabaseModel(): List<DatabaseVideo> {
+fun List<DevByteVideo>.asDatabaseModelFromDev(): List<DatabaseVideo> {
     return map {
         DatabaseVideo(
             url = it.url,

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pasandevin.android.android_mvvm_metadata_viewer.Adapter.VideoAdapter
+import com.pasandevin.android.android_mvvm_metadata_viewer.Models.asDatabaseModel
+import com.pasandevin.android.android_mvvm_metadata_viewer.VideosDatabase
 import com.pasandevin.android.android_mvvm_metadata_viewer.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -33,15 +35,16 @@ class MainFragment : Fragment() {
         binding.vm = viewModel
 
         viewModel.playlist.observe(viewLifecycleOwner) {
+
+            //insert content to listview
             binding.recyclerview.layoutManager = LinearLayoutManager(view?.context)
-            //attach adapter and view data
             binding.recyclerview.adapter = VideoAdapter(it)
 
+            //insert to db
+            val db = VideosDatabase.getDatabase(requireContext())
+            db.VideoDao().insertAll(it.asDatabaseModel())
+
         }
-
-
-
-
         return binding.root
     }
 

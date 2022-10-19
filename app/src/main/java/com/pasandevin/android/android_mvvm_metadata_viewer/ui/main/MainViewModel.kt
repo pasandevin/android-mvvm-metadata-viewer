@@ -1,5 +1,7 @@
 package com.pasandevin.android.android_mvvm_metadata_viewer.ui.main
 
+import android.app.Application
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.pasandevin.android.android_mvvm_metadata_viewer.DevByteNetwork
 import com.pasandevin.android.android_mvvm_metadata_viewer.Models.DevByteVideo
 import com.pasandevin.android.android_mvvm_metadata_viewer.Models.asDomainModel
+import com.pasandevin.android.android_mvvm_metadata_viewer.VideosDatabase
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -37,4 +40,5 @@ class MainViewModel : ViewModel() {
             _eventNetworkError.value = true
         }
     }
+
 }

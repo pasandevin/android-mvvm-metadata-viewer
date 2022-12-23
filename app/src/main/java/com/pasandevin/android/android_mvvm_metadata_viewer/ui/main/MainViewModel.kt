@@ -1,19 +1,24 @@
 package com.pasandevin.android.android_mvvm_metadata_viewer.ui.main
 
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pasandevin.android.android_mvvm_metadata_viewer.DevByteNetwork
+import com.pasandevin.android.android_mvvm_metadata_viewer.DevByteService
 import com.pasandevin.android.android_mvvm_metadata_viewer.Models.DevByteVideo
 import com.pasandevin.android.android_mvvm_metadata_viewer.Models.asDatabaseModelFromDev
 import com.pasandevin.android.android_mvvm_metadata_viewer.Models.asDomainModel
 import com.pasandevin.android.android_mvvm_metadata_viewer.VideosDatabase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val devByteService: DevByteService
+) : ViewModel() {
+
     private val _playlist = MutableLiveData<List<DevByteVideo>>()
     val playlist: LiveData<List<DevByteVideo>>
         get() = _playlist
@@ -32,7 +37,7 @@ class MainViewModel : ViewModel() {
 
     private fun refreshDataFromNetwork() = viewModelScope.launch {
         try {
-            val playlist = DevByteNetwork.devbytes.getPlaylist()
+            val playlist = devByteService.getPlaylist()
             _playlist.postValue(playlist.asDomainModel())
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
@@ -41,8 +46,8 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun insertToDB(db : VideosDatabase) {
-            db.VideoDao().insertAll(_playlist.value!!.asDatabaseModelFromDev())
-    }
+//    fun insertToDB(db: VideosDatabase) {
+//        db.VideoDao().insertAll(_playlist.value!!.asDatabaseModelFromDev())
+//    }
 
 }

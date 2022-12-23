@@ -3,7 +3,10 @@ package com.pasandevin.android.android_mvvm_metadata_viewer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.pasandevin.android.android_mvvm_metadata_viewer.ui.main.MainFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

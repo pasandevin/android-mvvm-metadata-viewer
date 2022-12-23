@@ -5,6 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.pasandevin.android.android_mvvm_metadata_viewer.Models.DatabaseVideo
 import com.pasandevin.android.android_mvvm_metadata_viewer.Models.DevByteVideo
+import com.pasandevin.android.android_mvvm_metadata_viewer.di.ApplicationScope
+import kotlinx.coroutines.CoroutineScope
+import javax.inject.Inject
+import javax.inject.Provider
 
 @Dao
 interface VideoDao {
@@ -18,24 +22,10 @@ interface VideoDao {
 
 @Database(entities = [DatabaseVideo::class], version = 1)
 abstract class VideosDatabase: RoomDatabase() {
-    abstract fun VideoDao(): VideoDao
+    abstract val videoDao: VideoDao
 
-    companion object {
-        @Volatile
-        private var INSTANCE: VideosDatabase? = null
-
-        fun getDatabase(context: Context): VideosDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    VideosDatabase::class.java,
-                    "videos_database"
-                ).allowMainThreadQueries().build()
-                INSTANCE = instance
-                instance
-            }
-
-        }
-
-    }
+    class Callback @Inject constructor(
+        private val database: Provider<VideosDatabase>,
+        @ApplicationScope private val applicationScope: CoroutineScope
+    ) : RoomDatabase.Callback()
 }

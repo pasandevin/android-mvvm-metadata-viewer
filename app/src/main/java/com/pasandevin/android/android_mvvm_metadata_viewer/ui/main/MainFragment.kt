@@ -11,7 +11,9 @@ import com.pasandevin.android.android_mvvm_metadata_viewer.Adapter.VideoAdapter
 import com.pasandevin.android.android_mvvm_metadata_viewer.Models.asDatabaseModelFromDev
 import com.pasandevin.android.android_mvvm_metadata_viewer.VideosDatabase
 import com.pasandevin.android.android_mvvm_metadata_viewer.databinding.FragmentMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
     companion object {
@@ -43,8 +45,8 @@ class MainFragment : Fragment() {
         binding.recyclerview.adapter = VideoAdapter(it)
 
         //insert to db
-        db = VideosDatabase.getDatabase(requireContext())
-        viewModel.insertToDB(db)
+//        db = VideosDatabase.getDatabase(requireContext())
+//        viewModel.insertToDB(db)
 
         }
         return binding.root
